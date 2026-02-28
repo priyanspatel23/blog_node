@@ -1,0 +1,94 @@
+<%- include('../partials/header') %>
+
+    <div
+        style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 40px 5%; position: relative;">
+        <!-- Abstract Background Elements -->
+        <div
+            style="position: absolute; top: 10%; right: 10%; width: 500px; height: 500px; background: var(--secondary); filter: blur(200px); border-radius: 50%; opacity: 0.15;">
+        </div>
+        <div
+            style="position: absolute; bottom: 10%; left: 10%; width: 400px; height: 400px; background: var(--primary); filter: blur(200px); border-radius: 50%; opacity: 0.15;">
+        </div>
+
+        <div class="register-container"
+            style="width: 100%; max-width: 500px; background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 32px; padding: 50px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); position: relative; z-index: 1;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px;">Join LUXBLOG
+                </h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Start your journey with the world's best
+                    writers</p>
+            </div>
+
+            <form action="/register" method="POST" style="display: flex; flex-direction: column; gap: 24px;">
+                <div class="form-group">
+                    <label
+                        style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 8px; margin-left: 4px;">Full
+                        Name</label>
+                    <div style="position: relative;">
+                        <i class="fa-regular fa-user"
+                            style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                        <input type="text" name="name" required
+                            style="width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 14px; padding: 14px 20px 14px 50px; color: #fff; outline: none; transition: 0.3s; font-size: 1rem;"
+                            placeholder="John Doe">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label
+                        style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 8px; margin-left: 4px;">Email
+                        Address</label>
+                    <div style="position: relative;">
+                        <i class="fa-regular fa-envelope"
+                            style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                        <input type="email" name="email" required
+                            style="width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 14px; padding: 14px 20px 14px 50px; color: #fff; outline: none; transition: 0.3s; font-size: 1rem;"
+                            placeholder="name@example.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label
+                        style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 8px; margin-left: 4px;">Password</label>
+                    <div style="position: relative;">
+                        <i class="fa-solid fa-lock"
+                            style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                        <input type="password" name="password" required
+                            style="width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 14px; padding: 14px 20px 14px 50px; color: #fff; outline: none; transition: 0.3s; font-size: 1rem;"
+                            placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn"
+                    style="width: 100%; padding: 16px; border: none; border-radius: 50px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2); margin-top: 10px;">Create
+                    Account</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--border);">
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    Already have an account?
+                    <a href="/login"
+                        style="color: var(--text); text-decoration: none; font-weight: 700; margin-left: 5px;">Sign in
+                        instead</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        input:focus {
+            border-color: var(--primary) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+    </style>
+
+    <%- include('../partials/footer') %>

@@ -1,0 +1,80 @@
+<%- include('../partials/header', { title: post.title }) %>
+
+    <div style="min-height: 100vh; padding: 40px 5%; position: relative;">
+        <!-- Abstract Backgrounds -->
+        <div
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 600px; background: linear-gradient(to bottom, rgba(139, 92, 246, 0.05), transparent); z-index: 0;">
+        </div>
+
+        <article class="post-container" style="max-width: 1000px; margin: 0 auto; position: relative; z-index: 1;">
+            <!-- Back Button -->
+            <div style="margin-bottom: 40px;">
+                <a href="/"
+                    style="display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s;"
+                    onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'">
+                    <i class="fa-solid fa-arrow-left"></i> Back to stories
+                </a>
+            </div>
+
+            <!-- Post Header -->
+            <header style="margin-bottom: 50px; text-align: center;">
+                <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 24px;">
+                    <span
+                        style="background: rgba(139, 92, 246, 0.1); color: var(--primary); padding: 6px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Photography</span>
+                    <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">6 min read</span>
+                </div>
+                <h1
+                    style="font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 30px; letter-spacing: -2px;">
+                    <%= post.title %>
+                </h1>
+
+                <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+                    <div
+                        style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800;">
+                        <%= post.author.name.charAt(0) %>
+                    </div>
+                    <div style="text-align: left;">
+                        <p style="font-weight: 700; font-size: 1rem;">
+                            <%= post.author.name %>
+                        </p>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">
+                            <%= post.createdAt.toLocaleDateString('en-US', { month: 'long' , day: 'numeric' ,
+                                year: 'numeric' }) %>
+                        </p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Feature Image -->
+            <div
+                style="width: 100%; height: 600px; border-radius: 40px; overflow: hidden; margin-bottom: 60px; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5); border: 1px solid var(--border);">
+                <img src="<%= post.imageUrl %>" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <!-- Post Content -->
+            <div style="max-width: 750px; margin: 0 auto;">
+                <div class="post-body"
+                    style="font-size: 1.25rem; line-height: 1.9; color: rgba(255,255,255,0.9); font-weight: 400; font-family: 'Times New Roman', serif; white-space: pre-wrap;">
+                    <%= post.content %>
+                </div>
+
+                <!-- Author Card -->
+                <div
+                    style="margin-top: 80px; padding: 40px; background: var(--card-bg); border-radius: 32px; border: 1px solid var(--border); display: flex; align-items: center; gap: 30px;">
+                    <div
+                        style="width: 80px; height: 80px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800;">
+                        <%= post.author.name.charAt(0) %>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">Written by <%=
+                                post.author.name %>
+                        </h4>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">A passionate
+                            storyteller and tech enthusiast sharing insights about the digital world and beyond.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <%- include('../partials/footer') %>

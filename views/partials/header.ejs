@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= typeof title !=='undefined' ? title : 'Premium Blog' %>
+    </title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #ec4899;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass: rgba(15, 23, 42, 0.8);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:not(.btn)::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-links a:not(.btn):hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .nav-links a.btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .user-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .user-dropdown:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-dropdown img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .user-dropdown span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            background: var(--bg);
+            min-width: 220px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            border: 1px solid var(--border);
+            padding: 8px;
+        }
+
+        .dropdown-menu a {
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.2s;
+        }
+
+        .dropdown-menu a i {
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+        }
+
+        .user-dropdown:hover .dropdown-menu {
+            display: flex;
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        .flash {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideInRight 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .flash-error {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .flash-success {
+            background: #10b981;
+            color: #fff;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">LUXBLOG</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Explore</a>
+            <a href="/#about">About</a>
+            <% if(user){ %>
+                <div class="user-dropdown">
+                    <div
+                        style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8rem; border: 2px solid var(--border);">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span>
+                        <%= user.name %>
+                    </span>
+                    <i class="fa fa-chevron-down" style="font-size: 0.7rem; color: var(--text-muted);"></i>
+                    <div class="dropdown-menu">
+                        <a href="/profile"><i class="fa-regular fa-user"></i> My Profile</a>
+                        <a href="/create"><i class="fa-regular fa-pen-to-square"></i> Write Blog</a>
+                        <a href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                        <div style="height: 1px; background: var(--border); margin: 8px 0;"></div>
+                        <a href="/logout" style="color: #ef4444;"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            Logout</a>
+                    </div>
+                </div>
+                <% } else { %>
+                    <a href="/login">Login</a>
+                    <a href="/register" class="btn">Join for free</a>
+                    <% } %>
+        </div>
+    </nav>
+
+    <!-- Global Flash Messages -->
+    <% if (typeof error_msg !=='undefined' && error_msg.length> 0) { %>
+        <div class="flash flash-error">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <%= error_msg[0] %>
+        </div>
+        <% } %>
+
+            <% if (typeof success_msg !=='undefined' && success_msg.length> 0) { %>
+                <div class="flash flash-success">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <%= success_msg[0] %>
+                </div>
+                <% } %>

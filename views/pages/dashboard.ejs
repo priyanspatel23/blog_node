@@ -1,0 +1,163 @@
+<%- include('../partials/header') %>
+
+    <div style="padding: 60px 5%; max-width: 1400px; margin: 0 auto;">
+        <!-- Header Area -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
+            <div>
+                <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Management Dashboard</h1>
+                <p style="color: var(--text-muted); font-size: 1rem;">Oversee all platform stories and analytics.</p>
+            </div>
+            <a href="/create" class="btn" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-plus"></i> Create New Story
+            </a>
+        </div>
+
+        <!-- Stat Cards -->
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 50px;">
+            <div
+                style="background: var(--card-bg); padding: 30px; border-radius: 24px; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -10px; right: -10px; font-size: 5rem; color: var(--primary); opacity: 0.05;">
+                    <i class="fa-solid fa-newspaper"></i></div>
+                <p
+                    style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">
+                    Total Stories</p>
+                <h3 style="font-size: 2.2rem; font-weight: 800;">
+                    <%= posts ? posts.length : 0 %>
+                </h3>
+            </div>
+            <div
+                style="background: var(--card-bg); padding: 30px; border-radius: 24px; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -10px; right: -10px; font-size: 5rem; color: var(--secondary); opacity: 0.05;">
+                    <i class="fa-solid fa-users"></i></div>
+                <p
+                    style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">
+                    Active Authors</p>
+                <h3 style="font-size: 2.2rem; font-weight: 800;">12</h3>
+            </div>
+            <div
+                style="background: var(--card-bg); padding: 30px; border-radius: 24px; border: 1px solid var(--border); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -10px; right: -10px; font-size: 5rem; color: #10b981; opacity: 0.05;">
+                    <i class="fa-solid fa-eye"></i></div>
+                <p
+                    style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">
+                    Monthly Views</p>
+                <h3 style="font-size: 2.2rem; font-weight: 800;">48.2k</h3>
+            </div>
+        </div>
+
+        <!-- Management Table -->
+        <div
+            style="background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+            <div
+                style="padding: 25px 30px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="font-size: 1.2rem; font-weight: 700;">Recent Publications</h3>
+                <div style="display: flex; gap: 12px;">
+                    <button
+                        style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); padding: 8px 15px; border-radius: 8px; font-size: 0.85rem; cursor: pointer;"><i
+                            class="fa-solid fa-filter"></i> Filter</button>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background: rgba(255,255,255,0.02);">
+                            <th
+                                style="padding: 20px 30px; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                                Story</th>
+                            <th
+                                style="padding: 20px 30px; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                                Author</th>
+                            <th
+                                style="padding: 20px 30px; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                                Published Date</th>
+                            <th
+                                style="padding: 20px 30px; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: right;">
+                                Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (posts && posts.length> 0) { %>
+                            <% posts.forEach(post=> { %>
+                                <tr
+                                    style="border-bottom: 1px solid var(--border); transition: 0.3s; background: transparent;">
+                                    <td style="padding: 20px 30px;">
+                                        <div style="display: flex; align-items: center; gap: 15px;">
+                                            <img src="<%= post.imageUrl || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1000' %>"
+                                                style="width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border);">
+                                            <div>
+                                                <p
+                                                    style="font-weight: 700; color: var(--text); font-size: 0.95rem; margin-bottom: 4px;">
+                                                    <%= post.title %>
+                                                </p>
+                                                <span
+                                                    style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">TECHNOLOGY</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="padding: 20px 30px;">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 28px; height: 28px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">
+                                                <%= post.author ? post.author.name.charAt(0) : 'A' %>
+                                            </div>
+                                            <p style="font-size: 0.9rem;">
+                                                <%= post.author ? post.author.name : 'Unknown' %>
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td style="padding: 20px 30px; color: var(--text-muted); font-size: 0.9rem;">
+                                        <%= post.createdAt ? post.createdAt.toLocaleDateString('en-US', { month: 'short'
+                                            , day: 'numeric' , year: 'numeric' }) : '' %>
+                                    </td>
+                                    <td style="padding: 20px 30px; text-align: right;">
+                                        <div style="display: flex; justify-content: flex-end; gap: 15px;">
+                                            <a href="/post/<%= post.id %>"
+                                                style="color: var(--text-muted); font-size: 1.1rem; transition: 0.3s;"><i
+                                                    class="fa-regular fa-eye"></i></a>
+                                            <% if (user && post.author &&
+                                                post.author._id.toString()===user._id.toString()) { %>
+                                                <a href="/post/edit/<%= post.id %>"
+                                                    style="color: var(--primary); font-size: 1.1rem; transition: 0.3s;"><i
+                                                        class="fa-regular fa-pen-to-square"></i></a>
+                                                <a href="/post/delete/<%= post.id %>"
+                                                    onclick="return confirm('Are you sure?')"
+                                                    style="color: #ef4444; font-size: 1.1rem; transition: 0.3s;"><i
+                                                        class="fa-regular fa-trash-can"></i></a>
+                                                <% } %>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="4"
+                                                style="padding: 60px; text-align: center; color: var(--text-muted);">
+                                                <i class="fa-regular fa-folder-open"
+                                                    style="font-size: 2.5rem; display: block; margin-bottom: 15px;"></i>
+                                                No stories available in the database.
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        tr:hover {
+            background: rgba(255, 255, 255, 0.02) !important;
+        }
+
+        a:hover {
+            transform: scale(1.1);
+            color: var(--text) !important;
+        }
+    </style>
+
+    <%- include('../partials/footer') %>

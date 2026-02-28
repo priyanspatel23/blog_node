@@ -1,0 +1,76 @@
+<footer style="background: var(--bg); border-top: 1px solid var(--border); padding: 4rem 5% 2rem; margin-top: 4rem;">
+    <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+        <div>
+            <a href="/" class="logo" style="margin-bottom: 1.5rem; display: block;">LUXBLOG</a>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                Sharing the world's best stories, thinking, and expertise.
+            </p>
+        </div>
+        <div>
+            <h4 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1rem;">Platform</h4>
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 0.8rem;"><a href="/"
+                        style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Browse
+                        Stories</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="/dashboard"
+                        style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Explore</a>
+                </li>
+                <li style="margin-bottom: 0.8rem;"><a href="/register"
+                        style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Join
+                        Now</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1rem;">Support</h4>
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 0.8rem;"><a href="#"
+                        style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Help
+                        Center</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="#"
+                        style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Privacy
+                        Policy</a></li>
+                <li style="margin-bottom: 0.8rem;"><a href="#"
+                        style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Terms
+                        of Service</a></li>
+            </ul>
+        </div>
+    </div>
+    <div
+        style="border-top: 1px solid var(--border); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <p style="color: var(--text-muted); font-size: 0.85rem;">
+            © 2026 LUXBLOG • All Rights Reserved
+        </p>
+        <div style="display: flex; gap: 1.5rem;">
+            <a href="#" style="color: var(--text-muted); font-size: 1.2rem;"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" style="color: var(--text-muted); font-size: 1.2rem;"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" style="color: var(--text-muted); font-size: 1.2rem;"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Flash message fade out
+    setTimeout(() => {
+        const flash = document.querySelector('.flash');
+        if (flash) {
+            flash.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            flash.style.opacity = '0';
+            flash.style.transform = 'translateX(20px)';
+            setTimeout(() => flash.remove(), 500);
+        }
+    }, 5000);
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

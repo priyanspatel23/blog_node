@@ -1,0 +1,44 @@
+<%- include('../partials/header', { title: 'Verify OTP' }) %>
+
+    <div
+        style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 40px 5%; position: relative;">
+        <div class="login-container"
+            style="width: 100%; max-width: 450px; background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 32px; padding: 50px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div
+                    style="width: 60px; height: 60px; background: rgba(139, 92, 246, 0.1); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem;">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px;">Verify Code
+                </h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">We've sent a 4-digit code to your inbox</p>
+            </div>
+
+            <form action="/verify-otp" method="POST" style="display: flex; flex-direction: column; gap: 24px;">
+                <input type="hidden" name="email" value="<%= email %>">
+                <div class="form-group">
+                    <label
+                        style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 8px; text-align: center;">Enter
+                        OTP</label>
+                    <input type="text" name="otp" required maxlength="4"
+                        style="width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 14px; padding: 18px; color: #fff; outline: none; transition: 0.3s; font-size: 2rem; text-align: center; letter-spacing: 12px; font-weight: 800;"
+                        placeholder="0000">
+                </div>
+
+                <button type="submit" class="btn"
+                    style="width: 100%; padding: 16px; border: none; border-radius: 50px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2);">Verify
+                    & Proceed</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--border);">
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    Didn't receive the code?
+                    <a href="/forgot-password"
+                        style="color: var(--text); text-decoration: none; font-weight: 700; margin-left: 5px;">Resend
+                        code</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
