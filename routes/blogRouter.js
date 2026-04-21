@@ -1,32 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const {
-    index,
-    create,
-    store,
-    show,
-    profile,
-    destroy,
-    edit,
-    update,
-    dash
-} = require("../controllers/blogController");
+const blogController = require("../controllers/blogController");
 const { isLoggedIn } = require("../middlewares/authMiddleware");
 const upload = require("../middlewares/uploadMiddleware");
 
-// Public Routes
-router.get("/post/:id", show);
+router.get("/post/:id", blogController.viewPost);
 
-// Protected Routes
-router.get("/", isLoggedIn, index);
-router.get("/dashboard", isLoggedIn, dash);
-router.get("/create", isLoggedIn, create);
-router.post("/create", isLoggedIn, upload.single("image"), store);
-router.get("/profile", isLoggedIn, profile);
+router.get("/", isLoggedIn, blogController.getHomePage);
+router.get("/dashboard", isLoggedIn, blogController.getDashboard);
 
-// Edit & Delete
-router.get("/post/edit/:id", isLoggedIn, edit);
-router.post("/post/edit/:id", isLoggedIn, upload.single("image"), update);
-router.get("/post/delete/:id", isLoggedIn, destroy);
+router.get("/create", isLoggedIn, blogController.renderCreatePost);
+router.post("/create", isLoggedIn, upload.single("image"), blogController.createPost);
+
+router.get("/profile", isLoggedIn, blogController.getUserProfile);
+
+router.get("/post/edit/:id", isLoggedIn, blogController.renderEditPost);
+router.post("/post/edit/:id", isLoggedIn, upload.single("image"), blogController.updatePost);
+
+router.get("/post/delete/:id", isLoggedIn, blogController.deletePost);
 
 module.exports = router;

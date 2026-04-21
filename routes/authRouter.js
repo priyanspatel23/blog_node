@@ -1,19 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const { reg, log, regPost, logPost, out, forgot, forgotP, vOtp, vOtpP, reset } = require("../controllers/authController");
+const authController = require("../controllers/authController");
 
-router.get("/register", reg);
-router.get("/login", log);
+router.get("/register", authController.renderRegister);
+router.post("/register", authController.handleRegister);
 
-router.post("/register", regPost);
-router.post("/login", logPost);
-router.get("/logout", out);
+router.get("/login", authController.renderLogin);
+router.post("/login", authController.handleLogin);
 
-// Forgot Password Flow
-router.get("/forgot-password", forgot);
-router.post("/forgot-password", forgotP);
-router.get("/verify-otp", vOtp);
-router.post("/verify-otp", vOtpP);
-router.post("/reset-password", reset);
+router.get("/logout", authController.handleLogout);
+
+router.get("/forgot-password", authController.renderForgotPassword);
+router.post("/forgot-password", authController.handleForgotPassword);
+
+router.get("/verify-otp", authController.renderVerifyOtp);
+router.post("/verify-otp", authController.handleVerifyOtp);
+
+router.post("/reset-password", authController.handleResetPassword);
 
 module.exports = router;
